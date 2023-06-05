@@ -16,6 +16,12 @@ services:
       - ./docker/apache/log:/var/log/apache2
     links:
       - php
+    labels:
+      # Traefik
+      - "traefik.enable=true"
+      - "traefik.http.routers.megalopolis.entrypoints=https"
+      - "traefik.http.routers.megalopolis.rule=Host(`megalopolis.defcomsoftware.com`)"
+      - "traefik.http.routers.megalopolis.tls=true"
 
   php:
     build: ./docker/php/
