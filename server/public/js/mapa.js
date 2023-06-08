@@ -42,7 +42,7 @@ async function generarMapa() {
                         nuevaColumna.style.backgroundColor = "rgba(255, 255, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
                         break;
-                    case "alimentos":
+                    case "comida":
                         nuevaColumna.style.backgroundColor = "rgba(255, 100, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
                         break;
@@ -52,13 +52,15 @@ async function generarMapa() {
                         break;
                 }
 
-                nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].recurso.tipo + ": " + mapa[i][j].recurso.cantidad + " <button class='btn btn btn-primary pr-1 pl-1'>Seleccionar</button> </span>"
+                if (mapa[i][j].ocupacion == 0) {
+                    nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].recurso.tipo + ": " + mapa[i][j].recurso.cantidad + " <button class='btn btn btn-primary pr-1 pl-1'>Seleccionar</button> </span>"
+                }
 
                 switch (mapa[i][j].ocupacion) {
-                    case 1:
+                    case "1":
                         nuevaColumna.innerHTML += " <img src='./img/ciudad.png' alt='Ciudad' class='rotacionImg' width='80' height='80'>";
                         break;
-                    case 2:
+                    case "2":
                         nuevaColumna.innerHTML += " <img src='./img/puesto-comercial.png' alt='Puesto comercial' class='rotacionImg' width='80' height='80'>";
                         break;
                 }
@@ -86,7 +88,7 @@ async function generarMapa() {
                         alert("hola")
 
                         // Envío de la petición al servidor PHP
-                        fetch('guardar-posicion.php', {
+                        fetch('http://localhost:8080/guardarPosicion', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded'

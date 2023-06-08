@@ -16,7 +16,9 @@ $rutas = [
     '/inicioSesion' => 'inicioSesion',
     '/avisoLegal' => 'avisoLegal',
     '/politicaPrivacidad' => 'politicaPrivacidad',
-    '/politicaCookies' => 'politicaCookies'
+    '/politicaCookies' => 'politicaCookies',
+    '/insertar' => 'poblarBD',
+    '/guardarPosicion' => 'guardarPosicion'
 
 ];
 
