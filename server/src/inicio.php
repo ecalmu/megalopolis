@@ -1,8 +1,3 @@
-<?
-    //Propago sesión
-    include "sesion.php";
-?>
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -16,8 +11,6 @@
   <?php
     // Cabecera
     include "../public/cabecera.html";
-    // Conexión a la base de datos
-    include "conexion.php";
 
     $consulta = "SELECT poblacion, felicidad, comida, dinero, energia FROM usuario WHERE id_usuario = $id_usuario";
     $rtdoUsuario = mysqli_query($c, $consulta);
@@ -59,7 +52,7 @@
 
     <!-- Edificios Start -->
     <?
-    $consulta = "SELECT edificio.estado, tipo.* FROM edificio INNER JOIN tipo ON edificio.id_tipo = tipo.id_tipo WHERE edificio.id_usuario =  $id_usuario";
+    $consulta = "SELECT edificio.estado, tipo.* FROM edificio INNER JOIN tipo ON edificio.id_tipo = tipo.id_tipo WHERE edificio.id_usuario =  $id_usuario AND edificio.disponibilidad = 1";
     $resultado = mysqli_query($c, $consulta);
     //Guardo todos los resultados en un array asociativo
     $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);

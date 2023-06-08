@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let boton of botonesConstruir) {
         boton.addEventListener("click", () => {
-
-            // boton.innerHTML = '<div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>'
             const progressBar = document.createElement('div');
             progressBar.className = 'progress';
             progressBar.innerHTML = '<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>';
@@ -20,19 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch('http://localhost:8080/construir', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // Especifica que los datos se enviarán en formato JSON
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: JSON.stringify(data) // Convierte el objeto a una cadena JSON
+                body: 'id_tipo='+ edificio
             })
-                // .then(response => response.json())
-                // .then(data => {
-                //     // Aquí puedes manejar la respuesta de la API
-                //     console.log(data);
-                // })
-                // .catch(error => {
-                //     // Manejo de errores
-                //     console.error('Error:', error);
-                // });
 
             let progreso = 0;
             let tiempoConstruccion = progressBar.previousElementSibling.lastElementChild.lastElementChild.textContent;
