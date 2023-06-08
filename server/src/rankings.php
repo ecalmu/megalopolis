@@ -22,7 +22,7 @@
   <body>
   <?php
     include "../public/cabecera.html";
-    include "conexion.php";
+
     // $consulta = "SELECT * FROM usuario";
     $consulta = "SELECT u.*, COUNT(e.id_edificio) AS edificios 
                  FROM usuario u 

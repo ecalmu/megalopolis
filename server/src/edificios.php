@@ -1,8 +1,3 @@
-<?
-    //Propago sesión
-    include "sesion.php";
-?>
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -16,14 +11,19 @@
   <?php
     // Cabecera
     include "../public/cabecera.html";
-    // Conexión a la base de datos
-    include "conexion.php";
 
-    $consulta = "SELECT tipo.* FROM tipo WHERE id_tipo NOT IN (SELECT id_tipo FROM edificio WHERE id_usuario = $id_usuario)";
-    $resultado = mysqli_query($c, $consulta);
+    $consulta1 = "SELECT tipo.* FROM tipo WHERE id_tipo NOT IN (SELECT id_tipo FROM edificio WHERE id_usuario = $id_usuario)";
+    $sinConstruir = mysqli_query($c, $consulta1);
     //Guardo todos los resultados en un array asociativo
-    $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    $sinConstruir = mysqli_fetch_all($sinConstruir, MYSQLI_ASSOC);
 
+    $consulta2 = "SELECT tipo.*, edificio.* FROM edificio INNER JOIN tipo ON edificio.id_tipo = tipo.id_tipo WHERE edificio.id_usuario = $id_usuario AND edificio.disponibilidad = 0";
+    $enConstruccion = mysqli_query($c, $consulta2);
+    //Guardo todos los resultados en un array asociativo
+    $enConstruccion = mysqli_fetch_all($enConstruccion, MYSQLI_ASSOC);
+    
+    $resultado = array_merge($sinConstruir, $enConstruccion);
+    
     ?>
     <!-- Edificios Start -->
     <div class="container-fluid">
@@ -76,9 +76,30 @@
                                     <h6><?=$tiempo_cadena?></h6>
                                 </div>
                             </div>
-                            <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>">
-                                <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
-                            </button>
+                            <?
+                            if (array_key_exists("disponibilidad",  $resultado[$i])) {
+                                $a = $resultado[$i]['construccion'];
+                                $inicioConstruccion = strtotime($a);
+                                $fechaActual = time();
+                                $tiempo = $resultado[$i]['tiempo'];
+                                $segundos = strtotime($tiempo) - strtotime('00:00:00');
+                                $diferencia = $segundos + $inicioConstruccion - $fechaActual;
+                                
+                                // Calcular la diferencia en segundos
+                                // $diferencia = $tiempoSegundos + $inicioConstruccion - $fechaActual;
+                                $width = 100 / $diferencia;
+
+                                ?>
+                                <div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$width?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>
+                                <?
+                            } else {
+                                ?>
+                                <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>">
+                                    <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
+                                </button>
+                                <?
+                            }
+                            ?>
                             <input type="hidden" name="id_tipo" value="<?=$resultado[$i]['id_tipo']?>">
                         </div>
                     </div>

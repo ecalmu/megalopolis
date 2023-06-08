@@ -17,9 +17,8 @@ $rutas = [
     '/avisoLegal' => 'avisoLegal',
     '/politicaPrivacidad' => 'politicaPrivacidad',
     '/politicaCookies' => 'politicaCookies',
-    '/insertar' => 'poblarBD',
-    '/guardarPosicion' => 'guardarPosicion'
-
+    '/guardarPosicion' => 'guardarPosicion',
+    '/insertar' => 'poblarBD'
 ];
 
 $env = parse_ini_file("../.env");
@@ -32,6 +31,11 @@ foreach ($env as $key => $value) {
 $ruta_solicitada = $_SERVER['REQUEST_URI'];
 // buscar la ruta en el array de rutas
 if (array_key_exists($ruta_solicitada, $rutas)) {
+    if($ruta_solicitada != 'login' && $ruta_solicitada != 'registro' ){
+        include('../src/sesion.php');
+        include('../src/conexion.php');
+        include('../src/actualizarEdificios.php');
+    }
     // incluir el controlador adecuado
     include_once('../src/' . $rutas[$ruta_solicitada] . '.php');
 } else {

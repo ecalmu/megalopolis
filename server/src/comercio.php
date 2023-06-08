@@ -1,8 +1,3 @@
-<?
-    //Propago sesión
-    include "sesion.php";
-?>
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -16,8 +11,6 @@
   <?php
     // Cabecera
     include "../public/cabecera.html";
-    // Conexión a la base de datos
-    include "conexion.php";
 
     //Obtengo los recursos disponibles del usuario
     $consulta = "SELECT dinero, comida, energia FROM usuario WHERE id_usuario = $id_usuario";

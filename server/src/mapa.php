@@ -12,8 +12,6 @@
     <?
     // Cabecera
     include "../public/cabecera.html";
-    // Conexión a la base de datos
-    include "conexion.php";
     ?>
 
     <!-- Inicio Mapa -->
