@@ -27,8 +27,15 @@ if (isset($_POST['login'])) {
             if (password_verify($pass, $resultado[0]['pass'])) {
                 $_SESSION['id_usuario'] = $resultado[0]['id_usuario'];
                 header('Location: /');
+            } else {
+                header('Location: /login');
             }
+        } else {
+            header('Location: /login');
         }
+    } else {
+        header('Location: /login');
     }
+    
 }
 ?>
