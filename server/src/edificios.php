@@ -23,7 +23,14 @@
     $enConstruccion = mysqli_fetch_all($enConstruccion, MYSQLI_ASSOC);
     
     $resultado = array_merge($sinConstruir, $enConstruccion);
-    
+
+    // $consulta = "SELECT tipo.*, edificio.* 
+    //          FROM tipo 
+    //          LEFT JOIN edificio ON tipo.id_tipo = edificio.id_tipo AND edificio.disponibilidad = 0 AND edificio.id_usuario = $id_usuario 
+    //          WHERE edificio.id_tipo IS NULL OR edificio.disponibilidad = 0";
+    // $resultado = mysqli_query($c, $consulta);
+    // $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+
     ?>
     <!-- Edificios Start -->
     <div class="container-fluid">
@@ -43,7 +50,7 @@
                                 <img class="img-fluid w-100" src="img/<?=str_replace(' ', '-', strtolower($resultado[$i]['nombre']))?>.jpg" alt="">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h5 class="text-truncate mb-3"><?=$resultado[$i]['nombre']?></h5>
+                                <h5 class="text-truncate mb-3"><?=ucfirst($resultado[$i]['nombre'])?></h5>
                                 <div>
                                     <?
                                     if($resultado[$i]['efecto_dinero'] != 0){
@@ -73,9 +80,9 @@
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-clock pr-2"></i>
-                                    <h6><?=$tiempo_cadena?></h6>
+                                    <!-- <h6><?=$tiempo_cadena?></h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <?
                             if (array_key_exists("disponibilidad",  $resultado[$i])) {
                                 $a = $resultado[$i]['construccion'];
@@ -85,21 +92,41 @@
                                 $segundos = strtotime($tiempo) - strtotime('00:00:00');
                                 $diferencia = $segundos + $inicioConstruccion - $fechaActual;
                                 
+                                // Formatear tiempo restante
+                                $h = floor($diferencia / 3600);
+                                $min = floor(($diferencia % 3600)/60);
+                                $seg = $diferencia % 60;
+                                if($h < 10) {
+                                    $h = "0" . $h;
+                                }
+                                if($min < 10) {
+                                    $min = "0" . $min;
+                                }
+                                if($seg < 10) {
+                                    $seg = "0" . $seg;
+                                }
+                                $tiempoFormato = $h ."h ". $min ."min " . $seg. "seg";
                                 // Calcular la diferencia en segundos
-                                // $diferencia = $tiempoSegundos + $inicioConstruccion - $fechaActual;
-                                $width = 100 / $diferencia;
+                                $width = 100 - $diferencia * 100 / $segundos;
 
                                 ?>
-                                <div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$width?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>
+                                <h6><?=$tiempoFormato?></h6>
+                                </div>
+                            </div>
+                                <div class="progress progreso"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$width?>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>
                                 <?
                             } else {
                                 ?>
+                                <h6><?=$tiempo_cadena?></h6>
+                                </div>
+                            </div>
                                 <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>">
                                     <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
                                 </button>
                                 <?
                             }
                             ?>
+                            
                             <input type="hidden" name="id_tipo" value="<?=$resultado[$i]['id_tipo']?>">
                         </div>
                     </div>
