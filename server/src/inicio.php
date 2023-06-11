@@ -11,7 +11,7 @@
   <?php
     // Cabecera
     include "../public/cabecera.html";
-
+    
     $consulta = "SELECT poblacion, felicidad, comida, dinero, energia FROM usuario WHERE id_usuario = $id_usuario";
     $rtdoUsuario = mysqli_query($c, $consulta);
     //Guardo todos los resultados en un array asociativo
@@ -40,7 +40,7 @@
             <div class="col-lg col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
                     <h1 class="<?= $iconos[$i]?> text-primary m-0 mr-2 pr-4"></h1>
-                    <h5 class="font-weight-semi-bold m-0"><?= ucfirst($array[$i])?><br><br><small>&nbsp;&nbsp;<?=$rtdoUsuario[0][$array[$i]]?></small></h5>
+                    <h5 class="font-weight-semi-bold m-0"><?= ucfirst($array[$i])?><br><br><small class="cantidad"><?=$rtdoUsuario[0][$array[$i]]?></small></h5>
                 </div>
             </div>
             <?
@@ -73,7 +73,7 @@
                         <img class="img-fluid w-100" src="img/<?=str_replace(' ', '-', strtolower($resultado[$i]['nombre']))?>.jpg" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h5 class="text-truncate mb-3"><?=$resultado[$i]['nombre']?></h5>
+                        <h5 class="text-truncate mb-3"><?=ucfirst($resultado[$i]['nombre'])?></h5>
                         <div>
                             <?
                             if($resultado[$i]['efecto_dinero'] != 0){
@@ -92,12 +92,12 @@
                             <i class="fas fa-bolt pr-2"></i><?=$resultado[$i]['coste_energia']?>
                         </div>
                     </div>
-                    <form method="post">
+                    <form method="post" class="text-center">
                         <?
                         if($resultado[$i]['estado'] == "Activado"){
-                            ?><button class="btn btn-primary px-3 estado" name="estado" value="Desactivado">Desactivar</button><?
+                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado">Desactivar</button><?
                         } else {
-                            ?><button class="btn btn-primary px-3 estado" name="estado" value="Activado">Activar</button><?
+                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado">Activar</button><?
                         }
                         ?>
                         <input type="hidden" name="id_tipo" value="<?=$resultado[$i]['id_tipo']?>">
