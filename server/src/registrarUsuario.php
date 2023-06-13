@@ -23,13 +23,13 @@
                 $data = [['usuario' => 1]]; //El nombre de usuario ya existe en la base de datos
             }
         } else { //Si no hay registros con esos datos en la base de datos
-
+            $fecha = time();
             //Inserto en la tabla usuario los valores introducidos
-            $stmt = mysqli_prepare($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
-                VALUES (?, ?, ?, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)");
+            $stmt = mysqli_prepare($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion, fechaMod) 
+                VALUES (?, ?, ?, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, ?)");
             
             $passEncriptada = password_hash($pass, PASSWORD_DEFAULT);
-            mysqli_stmt_bind_param($stmt, 'sss', $email, $usuario, $passEncriptada);
+            mysqli_stmt_bind_param($stmt, 'sssi', $email, $usuario, $passEncriptada, $fecha);
             // mysqli_stmt_execute($stmt);
 
             //Si la inserción se realizó correctamente
@@ -51,7 +51,7 @@
                 session_start();
 
                 $_SESSION['id_usuario'] = $rtdId[0]['id_usuario'];
-                header("Location:/");
+                header("Location:/enviarEmail");
             } else { //Si se produjo algún error
                 $data = [['registro' => 0]];
                 header("Location:/registro");
