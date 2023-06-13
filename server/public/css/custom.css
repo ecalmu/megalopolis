@@ -10844,7 +10844,7 @@ a.text-dark:focus {
 /* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
 .login {
-  background-image: url('./../img/fondo9.jpg');
+  background-image: url('./../img/login.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
@@ -10880,7 +10880,7 @@ a.text-dark:focus {
   /* margin-top: auto;
   margin-bottom: auto;
   width: 100%; */
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
 }
 
 .social_icon span {
