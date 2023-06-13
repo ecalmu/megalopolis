@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
 <head>
 	<?
@@ -18,13 +19,14 @@
 			</div>
 			<div class="card-body">
 				<form action="/inicioSesion" method="post" id="formulario">
+					<label for="nombre">Usuario</label>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" placeholder="Usuario" name="nombre" id="nombre" required>
-						
 					</div>
+					<label for="pass">Contraseña</label>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
