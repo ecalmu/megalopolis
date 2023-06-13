@@ -11,13 +11,18 @@
 <body>
     <?
     // Cabecera
-    include "../public/cabecera.html";
+    include "cabecera.php";
     ?>
 
     <!-- Inicio Mapa -->
     <div class="container-fluid" id="mapaContenedor">
-        <div class="text-center">
-            <h2 class="section-title px-5"><span class="px-2">Mapa</span></h2>
+        <div class="row d-flex">
+            <div class="col-7 text-right pr-5">
+                <h2 class="section-title px-5"><span class="px-2">Mapa</span></h2>
+            </div>
+            <div class="col-5 text-center pl-5">
+                <small><strong>Puesto comercial</strong><br>Coste: 10.000<i class="fas fa-coins pl-2 pr-2"></i></small>
+            </div>
         </div>
         <div class="container" id="mapa" style="background: url(./img/mapa.jpg);"></div>
     </div>
