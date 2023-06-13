@@ -10,7 +10,7 @@
   <body>
   <?php
     // Cabecera
-    include "../public/cabecera.html";
+    include "cabecera.php";
 
     //Obtengo los recursos disponibles del usuario
     $consulta = "SELECT dinero, comida, energia FROM usuario WHERE id_usuario = $id_usuario";

@@ -8,7 +8,7 @@
     </head>
     <body>
     <?
-    include "../public/cabecera.html";
+    include "cabecera.php";
 
     //Obtengo todos los datos de usuarios y la cantidad de edificios por usuario
     $consulta = "SELECT u.*, COUNT(e.id_edificio) AS edificios 
@@ -54,7 +54,7 @@
                             
                             for ($j = 0; $j < $filas; $j++) {
                                 usort($resultado, ordenar($array[$i]));
-                                if($resultado[$j]['id_usuario'] = $id_usuario) {
+                                if($resultado[$j]['id_usuario'] == $id_usuario) {
                                     ?>
                                     <tr>
                                         <td class="align-middle bg-secondary"><?=$j + 1?></td>

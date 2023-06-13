@@ -13,7 +13,7 @@
 <body>
     <?
     // Cabecera
-    include "../public/cabecera.html";
+    include "cabecera.php";
     ?>
     <div class="container">
         <div class="mb-4">
