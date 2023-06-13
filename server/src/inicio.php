@@ -10,7 +10,7 @@
   <body>
   <?php
     // Cabecera
-    include "../public/cabecera.html";
+    include "cabecera.php";
     
     $consulta = "SELECT poblacion, felicidad, comida, dinero, energia FROM usuario WHERE id_usuario = $id_usuario";
     $rtdoUsuario = mysqli_query($c, $consulta);
@@ -18,11 +18,13 @@
     $rtdoUsuario = mysqli_fetch_all($rtdoUsuario, MYSQLI_ASSOC);
 
     if (isset($_POST['estado'])) { 
-        if ($rtdoUsuario[0]['energia'] > $_POST['coste_energia'] ) {
+        if ($rtdoUsuario[0]['energia'] >= $_POST['coste_energia'] ) {
             $estado = $_POST['estado'];
             $tipo = $_POST['id_tipo'];
             mysqli_query($c, "UPDATE edificio SET estado = '$estado' WHERE id_tipo = '$tipo'");
-
+            //Vuelvo a obtener los datos de la base de datos actualizados
+            $rtdoUsuario = mysqli_query($c, $consulta);
+            $rtdoUsuario = mysqli_fetch_all($rtdoUsuario, MYSQLI_ASSOC);
         } else {
             echo "No tienes suficiente energia";
         }
@@ -77,7 +79,7 @@
                         <div>
                             <?
                             if($resultado[$i]['efecto_dinero'] != 0){
-                                ?><i class="fas fa-money-bill pl-2 pr-2"></i><?=$resultado[$i]['efecto_dinero'];
+                                ?><i class="fas fa-coins pl-2 pr-2"></i><?=$resultado[$i]['efecto_dinero'];
                             }
                             if($resultado[$i]['efecto_comida'] != 0){
                                 ?><i class="fas fa-carrot pl-2 pr-2"></i><?=$resultado[$i]['efecto_comida'];
@@ -96,6 +98,8 @@
                         <?
                         if($resultado[$i]['estado'] == "Activado"){
                             ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado">Desactivar</button><?
+                        } else if ($rtdoUsuario[0]['energia'] < $resultado[$i]['coste_energia']){
+                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado" disabled="disabled">Activar</button><?
                         } else {
                             ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado">Activar</button><?
                         }
