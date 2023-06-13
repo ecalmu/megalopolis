@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",  () => {
 
 async function generarMapa() {
     try {
-        //hago una petición a la API food-database
+        //hago una petición a la API
         let respuesta = await fetch("http://localhost:8080/generarMapa");
         let mapa = await respuesta.json()
 
@@ -26,7 +26,7 @@ async function generarMapa() {
                 //Creo una nueva columna
                 let nuevaColumna = document.createElement("div")
                 //Añado la clase col al div
-                nuevaColumna.classList.add("col-lg-1")
+                nuevaColumna.classList.add("col-1")
                 nuevaColumna.classList.add("align-items-center")
                 nuevaColumna.classList.add("d-flex")
                 nuevaColumna.classList.add("justify-content-center")
@@ -38,22 +38,48 @@ async function generarMapa() {
                 // nuevaColumna.title = "Dinero: 500 \nAlimento: 100 \nEnergia:200"
 
                 switch (mapa[i][j].recurso.tipo) {
-                    case "dinero":
+                    case "Dinero":
                         nuevaColumna.style.backgroundColor = "rgba(255, 255, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
                         break;
-                    case "comida":
+                    case "Comida":
                         nuevaColumna.style.backgroundColor = "rgba(255, 100, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
                         break;
-                    case "energia":
+                    case "Energia":
                         nuevaColumna.style.backgroundColor = "rgba(51, 212, 255, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
                         break;
                 }
+                
+                let tieneCiudad = false;
+                for (let a = 0; a < mapa.length; a++) {
+                    for (let b = 0; b < mapa[a].length; b++) {
+                        if(mapa[a][b].id == mapa[a][b].id_actual) {
+                            tieneCiudad = true;
+                        }
+                    }
 
+                }
                 if (mapa[i][j].ocupacion == 0) {
-                    nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].recurso.tipo + ": " + mapa[i][j].recurso.cantidad + " <button class='btn btn btn-primary pr-1 pl-1'>Seleccionar</button> </span>"
+                    let mostrarBoton = false;
+                    for (let fila = i - 1; fila <= i + 1; fila++) {
+                        for (let columna =  j - 1; columna <= j + 1; columna++) {
+                            if (fila >= 0 && fila <= 6 && columna >= 0 && columna <= 11){
+                                if ((mapa[fila][columna].ocupacion == 1 || mapa[fila][columna].ocupacion == 2)&& mapa[fila][columna].id == mapa[fila][columna].id_actual) {
+                                    mostrarBoton = true;
+                                }
+                            }
+                        }
+                    }
+                    if (mostrarBoton || !tieneCiudad) {
+                        nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].recurso.tipo + ": " + mapa[i][j].recurso.cantidad + " <button class='btn btn btn-primary pr-1 pl-1' id=seleccionar" + i + j + ">Seleccionar</button> </span>"
+                    } else {
+                        nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].recurso.tipo + ": " + mapa[i][j].recurso.cantidad + " </span>"
+                    }
+                    
+                } else {
+                    nuevaColumna.innerHTML += "<span class='tooltiptext rotacionTooltip' id=tooltip" + i + j + " >" + mapa[i][j].usuario + "</span>"
                 }
 
                 switch (mapa[i][j].ocupacion) {
@@ -74,7 +100,7 @@ async function generarMapa() {
                         celdaSeleccionada = document.getElementById(celdaSeleccionada)
                         celdaSeleccionada.style.backgroundColor = ""; // Restauro el color de fondo anterior
                         celdaSeleccionada.style.backgroundImage = fondoCelda; // Restauro la imagen de fondo anterior
-                        let tooltipS = document.getElementById(tooltipSel);
+                        let tooltipS = document.getElementById(tooltipS);
                         tooltipS.style.visibility = "hidden";
                     }
                     fondoCelda = nuevaColumna.style.backgroundImage;
@@ -85,24 +111,26 @@ async function generarMapa() {
                     tooltip.style.visibility = "visible";
 
                     tooltip.children[0].addEventListener("click", () => {
-                        alert("hola")
-
                         // Envío de la petición al servidor PHP
                         fetch('http://localhost:8080/guardarPosicion', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded'
-                                },
-                                body: 'posicion=' + i + ";" + j
-                            })
-                            .then(function (response) {
-                                // Manejar la respuesta del servidor si es necesario
-                                console.log(response);
-                            })
-                            .catch(function (error) {
-                                // Manejar errores
-                                console.error('Error:', error);
-                            });
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: 'posicion=' + i + ";" + j
+                        })
+                        .then(function (response) {
+                            // Manejar la respuesta del servidor si es necesario
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            // Manejar errores
+                            console.error('Error:', error);
+                        });
+                        //Recargo la página para que aparezca la ciudad o puesto comercial creado
+                        setTimeout(function() {
+                            window.location.href = '/mapa';
+                        }, 500);
                     })
 
                     celdaSeleccionada = nuevaColumna.id
