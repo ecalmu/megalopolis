@@ -1,6 +1,6 @@
 <?
    	include "conexion.php";
-
+	   mysqli_query($c,"DROP DATABASE megalopolis");
 	//Creo la base de datos Megalopolis
 	if (!mysqli_query($c,"CREATE DATABASE IF NOT EXISTS megalopolis")) {
 		echo mysqli_error($c);
@@ -22,6 +22,8 @@
 		energia INT(10) DEFAULT 1000,
 		felicidad INT(3) DEFAULT 100,
 		poblacion INT(10) DEFAULT 1000,
+		fechaMod INT(11),
+		token VARCHAR(15),
         PRIMARY KEY (id_usuario),
 		CONSTRAINT UC_Usuario UNIQUE (email,nombre)
         )");
@@ -48,7 +50,7 @@
 	mysqli_query($c,"CREATE TABLE IF NOT EXISTS ubicacion (
 		x INT(5), 
 		y INT(5),
-		tipo INT(10),
+		tipo VARCHAR(16),
 		id_usuario INT(5),
 		PRIMARY KEY (x, y),
         FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
@@ -81,6 +83,8 @@
 		estado VARCHAR(11),
 		id_usuario INT(5),
 		id_tipo INT(10),
+		disponibilidad INT(1),
+		construccion TIMESTAMP,
         PRIMARY KEY (id_edificio),
         FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
         FOREIGN KEY (id_tipo) REFERENCES tipo(id_tipo),
