@@ -15,7 +15,7 @@
 	<div class="d-flex justify-content-center h-100 m-5 p-5">
 		<div class="card-login content">
 			<div class="card-header text-center">
-				<h3>Iniciar sesión</h3>
+				<h1 class="text-white">Iniciar sesión</h1>
 			</div>
 			<div class="card-body">
 				<form action="/inicioSesion" method="post" id="formulario">
@@ -34,7 +34,8 @@
 						<input type="password" class="form-control" placeholder="Contraseña" name="pass" id="pass" required>
 					</div>
 					<div class="row align-items-center remember">
-						<input type="checkbox" id="recuerdame">Recuérdame
+						<input type="checkbox" id="recuerdame" name="recuerdame">
+						<label class="h6 text-white d-block mb-0" for="recuerdame">Recuérdame</label>
 					</div>
 					<div class="form-group">
 						<input type="submit" name="login" value="Login" class="btn float-right login_btn">

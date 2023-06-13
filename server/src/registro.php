@@ -18,7 +18,7 @@
                 <div class="card-login p-5">
                     <div class="card border-0 mb-1" id="colorFondo">
                         <div class="card-header border-0 mb-0 text-center">
-                            <h3 class="m-0">Registro</h3>
+                            <h1 class="text-white m-0">Registro</h1>
                         </div>
                         <form name="sentMessage" id="contactForm" class="pl-xl-5 pr-xl-5" action="/registrarUsuario" method="POST">
 
@@ -44,10 +44,11 @@
                                 <input type="password" class="form-control" name="pass" placeholder="Contraseña" required>
                             </div>
                             
-                            <div class="row align-items-center remember mb-4">
-                                <input type="checkbox" name="privacidad" required>Acepto la <a href="/politicaPrivacidad" class="ml-2 mr-1"> política de
-                                    privacidad </a> *
+                            <div id="privacidad" class="row align-items-center remember mb-4">
+                                <input type="checkbox" name="privacidad" id="privacidadCheckbox" required>
+                                <label class="h6 text-white d-block mb-0" for="privacidadCheckbox">Acepto la <a href="/politicaPrivacidad" class="ml-2 mr-1">política de privacidad</a> *</label>
                             </div>
+
                             <!-- <form action="?" method="POST"> -->
                                 <div class="g-recaptcha" data-sitekey="6Ldcsj0kAAAAANY-gikM_crs23baOJyHYYMAAA00"></div>
                                 <input type="submit" value="Registrarse" class="btn float-right login_btn">
