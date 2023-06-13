@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     minutos = "00";
                     horas--
                     if (horas < 0) {
+                        horas = "00";
+                        segundos = "00";
                         clearInterval(actualizacion);
                     }
                 }
