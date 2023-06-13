@@ -45,3 +45,12 @@ services:
         source: ./docker/mariadb/database_files
         target: /var/lib/mysql
       - ./docker/mariadb/initialization_scripts:/docker-entrypoint-initdb.d
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      restart: always
+      ports:
+        - 8081:80
+      environment:
+        PMA_HOST: mariadb
+        PMA_USER: ${MARIADB_USER}
+        PMA_PASSWORD: ${MARIADB_PASSWORD}
