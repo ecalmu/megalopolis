@@ -10844,7 +10844,7 @@ a.text-dark:focus {
 /* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
 .login {
-  background-image: url('./../img/login.jpg');
+  background-image: url('/img/login.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
