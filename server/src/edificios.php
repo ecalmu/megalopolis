@@ -10,26 +10,21 @@
   <body>
   <?php
     // Cabecera
-    include "../public/cabecera.html";
+    include "cabecera.php";
 
     $consulta1 = "SELECT tipo.* FROM tipo WHERE id_tipo NOT IN (SELECT id_tipo FROM edificio WHERE id_usuario = $id_usuario)";
     $sinConstruir = mysqli_query($c, $consulta1);
-    //Guardo todos los resultados en un array asociativo
     $sinConstruir = mysqli_fetch_all($sinConstruir, MYSQLI_ASSOC);
 
     $consulta2 = "SELECT tipo.*, edificio.* FROM edificio INNER JOIN tipo ON edificio.id_tipo = tipo.id_tipo WHERE edificio.id_usuario = $id_usuario AND edificio.disponibilidad = 0";
     $enConstruccion = mysqli_query($c, $consulta2);
-    //Guardo todos los resultados en un array asociativo
     $enConstruccion = mysqli_fetch_all($enConstruccion, MYSQLI_ASSOC);
     
     $resultado = array_merge($sinConstruir, $enConstruccion);
 
-    // $consulta = "SELECT tipo.*, edificio.* 
-    //          FROM tipo 
-    //          LEFT JOIN edificio ON tipo.id_tipo = edificio.id_tipo AND edificio.disponibilidad = 0 AND edificio.id_usuario = $id_usuario 
-    //          WHERE edificio.id_tipo IS NULL OR edificio.disponibilidad = 0";
-    // $resultado = mysqli_query($c, $consulta);
-    // $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    $consulta3 = "SELECT poblacion, comida, dinero, energia FROM usuario WHERE id_usuario = $id_usuario";
+    $rtdoUsuario = mysqli_query($c, $consulta3);
+    $rtdoUsuario = mysqli_fetch_all($rtdoUsuario, MYSQLI_ASSOC);
 
     ?>
     <!-- Edificios Start -->
@@ -54,7 +49,7 @@
                                 <div>
                                     <?
                                     if($resultado[$i]['efecto_dinero'] != 0){
-                                        ?><i class="fas fa-money-bill pl-2 pr-2"></i><?=$resultado[$i]['efecto_dinero'];
+                                        ?><i class="fas fa-coins pl-2 pr-2"></i><?=$resultado[$i]['efecto_dinero'];
                                     }
                                     if($resultado[$i]['efecto_comida'] != 0){
                                         ?><i class="fas fa-carrot pl-2 pr-2"></i><?=$resultado[$i]['efecto_comida'];
@@ -68,7 +63,7 @@
                                 <div class="pb-3">
                                 <?
                                     if($resultado[$i]['coste_dinero'] != 0){
-                                        ?><i class="fas fa-money-bill pl-2 pr-2"></i><?=$resultado[$i]['coste_dinero'];
+                                        ?><i class="fas fa-coins pl-2 pr-2"></i><?=$resultado[$i]['coste_dinero'];
                                     }
                                     if($resultado[$i]['coste_comida'] != 0){
                                         ?><i class="fas fa-carrot pl-2 pr-2"></i><?=$resultado[$i]['coste_comida'];
@@ -120,10 +115,23 @@
                                 <h6><?=$tiempo_cadena?></h6>
                                 </div>
                             </div>
-                                <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>">
-                                    <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
-                                </button>
-                                <?
+                            <?
+                                if ($rtdoUsuario[0]['comida'] < $resultado[$i]['coste_comida'] ||
+                                $rtdoUsuario[0]['dinero'] < $resultado[$i]['coste_dinero'] ||
+                                $rtdoUsuario[0]['energia'] < $resultado[$i]['coste_energia'] ||
+                                $rtdoUsuario[0]['poblacion'] < $resultado[$i]['pob_requerida']) {
+                                    ?>
+                                    <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>" disabled="disabled">
+                                        <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
+                                    </button>
+                                    <?
+                                } else {
+                                    ?>
+                                    <button class="btn btn-primary px-3 construir" alt="<?=$resultado[$i]['id_tipo']?>">
+                                        <i class="fas fa-arrow-alt-circle-right mr-1"></i>Construir
+                                    </button>
+                                    <?
+                                }
                             }
                             ?>
                             
