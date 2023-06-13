@@ -7,5 +7,10 @@
     //Inicio o propago la sesión:
     session_start();
 
+    //Si no está iniciada la sesión, es decir, si es False, salir
+    if (!isset($_SESSION['id_usuario'])) {
+        header('Location: /login');
+        return;
+    }
     $id_usuario = $_SESSION['id_usuario'];
 ?>
