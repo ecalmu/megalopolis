@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
             let respuesta = await fetch("http://localhost:8080/calcularIndicadores");
             let indicadores = await respuesta.json();
 
-            let incrementoComida = Math.round(indicadores[0]['comida'] / 60);
-            let incrementoDinero = Math.round(indicadores[0]['dinero'] / 60);
-            let incrementoPob = Math.round(indicadores[0]['poblacion'] / (24 * 60 * 60));
+            let incrementoComida = Math.round(indicadores.comida / 60);
+            let incrementoDinero = Math.round(indicadores.dinero / 60);
+            let incrementoPob = Math.round(indicadores.poblacion / (24 * 60 * 60));
 
             setInterval(() =>actualizar(incrementoComida, incrementoDinero, incrementoPob), 1000);
         } catch (error) {

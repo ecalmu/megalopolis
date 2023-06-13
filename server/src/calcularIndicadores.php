@@ -21,18 +21,57 @@
     $rtdoEfecto = mysqli_query($c, $consulta);
     $rtdoEfecto = mysqli_fetch_all($rtdoEfecto, MYSQLI_ASSOC);
 
+    //Obtengo la ubicación de la ciudad y puestos comerciales
+    $consulta = "SELECT * FROM ubicacion WHERE id_usuario =  $id_usuario";
+    $rtdoUbi = mysqli_query($c, $consulta);
+    $rtdoUbi = mysqli_fetch_all($rtdoUbi, MYSQLI_ASSOC);
+
+    //Obtengo el efecto asociado a la ubicación
+    include "calcularRecursos.php";
+    
     $incrementoComida = 0;
     $incrementoDinero = 0;
     $energia = 0;
 
+    for($i = 0; $i < count($rtdoUbi); $i++) {
+        $cantidad = calcular_recurso($rtdoUbi[$i]['x'], $rtdoUbi[$i]['y']);
+
+        $recursos = array('Dinero', 'Comida', 'Energia');
+        srand(SEED.'3'.$rtdoUbi[$i]['x'].$rtdoUbi[$i]['y']);
+    
+        $tipo = $recursos[array_rand($recursos)];
+        switch($tipo) {
+            case "Dinero":
+                $incrementoDinero += $cantidad;
+                break;
+            case "Comida":
+                $incrementoComida += $cantidad;
+                break;
+            case "Energia":
+                $energia += $cantidad;
+                break;
+        }
+    }
+
     for ($i = 0; $i < count($rtdoEfecto); $i++) {
         $incrementoComida += $rtdoEfecto[$i]['efecto_comida'];
         $incrementoDinero += $rtdoEfecto[$i]['efecto_dinero'];
-        $energia += $rtdoEfecto[$i]['efecto_energia'];
+        $energia += $rtdoEfecto[$i]['efecto_energia'] - $rtdoEfecto[$i]['coste_energia'];
     }
 
     $comida += (int)($incrementoComida * $minutos);
     $dinero += (int)($incrementoDinero * $minutos);
+
+    //Obtengo las ofertas realizadas en propuestas comerciales
+    $consulta = "SELECT oferta_dinero, oferta_energia, oferta_comida FROM propuesta_comercial WHERE id_usuario = $id_usuario";
+    $rtdoOferta = mysqli_query($c, $consulta);
+    $rtdoOferta = mysqli_fetch_all($rtdoOferta, MYSQLI_ASSOC);
+
+    for ($i = 0; $i < count($rtdoOferta); $i++) {
+        $comida -= $rtdoOferta[$i]['oferta_comida'];
+        $dinero -= $rtdoOferta[$i]['oferta_dinero'];
+        $energia -= $rtdoOferta[$i]['oferta_energia'];
+    }
 
     //La felicidad decrece por cada día no jugado y sube por cantidad de edificios
     $felicidad = $rtdoInd[0]['felicidad'] - ($dias * 2) + count($rtdoEfecto);
@@ -64,7 +103,9 @@
         $poblacion -= 40 * $dias;
         $incrementoPob = -40;
     }
-
+    if ($poblacion < 0) {
+        $poblacion = 0;
+    }
     // Actualizo la base de datos con los indicadores calculados
     mysqli_query($c, "UPDATE usuario SET energia = '$energia', comida = '$comida', dinero = '$dinero', felicidad = '$felicidad', poblacion = '$poblacion', fechaMod = '$fechaActual' WHERE id_usuario = $id_usuario");
     
@@ -73,10 +114,9 @@
         'dinero' => $incrementoDinero,
         'poblacion' => $incrementoPob
     );
-    $resultado = array ();
-    $resultado[0] = $indicadores;
+
     // Convierto el resultado a formato json
-    $json_resultado = json_encode($resultado);
+    $json_resultado = json_encode($indicadores);
 
     // Devuelvo el json
     echo $json_resultado;
