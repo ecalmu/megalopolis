@@ -52,17 +52,23 @@ function get_value($clave) {
 
     switch ($clave) {
         case 'dia_inicial':
-            return $resultado[0]['valor'];
+            return $resultado[1]['valor'];
             break;
         case 'dia_final':
-            return $resultado[1]['valor'];
+            return $resultado[0]['valor'];
             break;
     }
 }
 
 function set_value($clave, $valor) {
     include "conexion.php";
-
-    mysqli_query($c, "UPDATE datos SET valor = '$valor' WHERE clave = '$clave'");
+    switch ($clave) {
+        case 'dia_inicial':
+            mysqli_query($c, "UPDATE datos SET dia_inicial = '$valor'");
+            break;
+        case 'dia_final':
+            mysqli_query($c, "UPDATE datos SET dia_final = '$valor'");
+            break;
+    }
 }
 ?>
