@@ -92,4 +92,12 @@
         )");
 
 	echo utf8_encode('Tabla edificio creada').'<br>';
+
+	//Creo la tabla datos
+	mysqli_query($c,"CREATE TABLE IF NOT EXISTS ubicacion (
+		clave INT(10), 
+		valor INT(10),
+		PRIMARY KEY (clave)
+        )");
+	echo utf8_encode('Tabla datos creada').'<br>';
 ?>
