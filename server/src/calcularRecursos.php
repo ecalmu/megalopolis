@@ -63,6 +63,6 @@ function get_value($clave) {
 function set_value($clave, $valor) {
     include "conexion.php";
 
-    mysqli_query($c, "UPDATE datos SET valor = '$valor' WHERE clave = '$clave");
+    mysqli_query($c, "UPDATE datos SET valor = '$valor' WHERE clave = '$clave'");
 }
 ?>
