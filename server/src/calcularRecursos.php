@@ -62,13 +62,6 @@ function get_value($clave) {
 
 function set_value($clave, $valor) {
     include "conexion.php";
-    switch ($clave) {
-        case 'dia_inicial':
-            mysqli_query($c, "UPDATE datos SET dia_inicial = '$valor'");
-            break;
-        case 'dia_final':
-            mysqli_query($c, "UPDATE datos SET dia_final = '$valor'");
-            break;
-    }
+    mysqli_query($c, "UPDATE datos SET clave = '$clave', valor = '$valor'");
 }
 ?>
