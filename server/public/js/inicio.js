@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function obtenerActualizacion() {
         try {
             // Hago una petición a la API
-            let respuesta = await fetch("http://localhost:8080/calcularIndicadores");
+            let respuesta = await fetch("https://megalopolis.defcomsoftware.com/calcularIndicadores");
             let indicadores = await respuesta.json();
 
             let incrementoComida = Math.round(indicadores.comida / 60);

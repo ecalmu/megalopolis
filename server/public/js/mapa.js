@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",  () => {
 async function generarMapa() {
     try {
         //hago una petición a la API
-        let respuesta = await fetch("http://localhost:8080/generarMapa");
+        let respuesta = await fetch("https://megalopolis.defcomsoftware.com/generarMapa");
         let mapa = await respuesta.json()
 
 
@@ -112,7 +112,7 @@ async function generarMapa() {
 
                     tooltip.children[0].addEventListener("click", () => {
                         // Envío de la petición al servidor PHP
-                        fetch('http://localhost:8080/guardarPosicion', {
+                        fetch('https://megalopolis.defcomsoftware.com/guardarPosicion', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'

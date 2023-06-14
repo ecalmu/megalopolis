@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 id_tipo: edificio
             };
 
-            fetch('http://localhost:8080/construir', {
+            fetch('https://megalopolis.defcomsoftware.com/construir', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
