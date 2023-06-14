@@ -95,8 +95,8 @@
 
 	//Creo la tabla datos
 	mysqli_query($c,"CREATE TABLE IF NOT EXISTS datos (
-		clave INT(10), 
-		valor INT(10),
+		clave VARCHAR(20), 
+		valor VARCHAR(250),
 		PRIMARY KEY (clave)
         )");
 	echo utf8_encode('Tabla datos creada').'<br>';
