@@ -30,7 +30,7 @@
             
             $passEncriptada = password_hash($pass, PASSWORD_DEFAULT);
             mysqli_stmt_bind_param($stmt, 'sssi', $email, $usuario, $passEncriptada, $fecha);
-            // mysqli_stmt_execute($stmt);
+            
 
             //Si la inserción se realizó correctamente
             if (mysqli_stmt_execute($stmt)) {
@@ -50,7 +50,12 @@
                 //Inicio o propago la sesión:
                 session_start();
 
-                $_SESSION['id_usuario'] = $rtdId[0]['id_usuario'];
+                $id = $rtdId[0]['id_usuario'];
+                $_SESSION['id_usuario'] = $id;
+
+                mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (1, '$id', 'Activado')");
+                mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (2, '$id', 'Activado')");
+                
                 header("Location:/mapa");
             } else { //Si se produjo algún error
                 $data = [['registro' => 0]];
