@@ -104,7 +104,7 @@
                     </div>
                     <form method="post" class="text-center">
                         <?
-                        if($resultado[$i]['estado'] == "Activado"){
+                        if($resultado[$i]['estado'] == "Activado" && $rtdoUsuario[0]['energia'] - $resultado[$i]['efecto_energia'] > $resultado[$i]['coste_energia'] ){
                             ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado">Desactivar</button><?
                         } else if ($rtdoUsuario[0]['energia'] < $resultado[$i]['coste_energia']){
                             ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado" disabled="disabled">Activar</button><?
