@@ -51,7 +51,7 @@
                 session_start();
 
                 $_SESSION['id_usuario'] = $rtdId[0]['id_usuario'];
-                header("Location:/enviarEmail");
+                header("Location:/mapa");
             } else { //Si se produjo algún error
                 $data = [['registro' => 0]];
                 header("Location:/registro");
