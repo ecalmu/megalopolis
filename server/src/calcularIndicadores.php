@@ -14,7 +14,7 @@
     $fechaMod = $rtdoInd[0]['fechaMod'];
     $fechaActual = time();
     $minutos = ($fechaActual - $fechaMod) / 60;
-    $dias = (int)($minutos / 60 * 24);
+    $dias = (int)($minutos / (60 * 24));
 
     //Obtengo los efectos de los edificios sobre los indicadores
     $consulta = "SELECT edificio.estado, tipo.* FROM edificio INNER JOIN tipo ON edificio.id_tipo = tipo.id_tipo WHERE edificio.id_usuario =  $id_usuario AND edificio.disponibilidad = 1 AND edificio.estado = 'Activado'";
