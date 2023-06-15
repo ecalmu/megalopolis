@@ -117,7 +117,7 @@ mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, 
 
 mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('central nuclear', '01:30:00', 5000, 1500, 800, 5000, 7, 0, 0, 1000)");
 
-mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('torre de vigilancia', '00:30:00', 2000, 500, 200, 3000, 0, 100, 0, 0)");
+// mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('torre de vigilancia', '00:30:00', 2000, 500, 200, 3000, 0, 100, 0, 0)");
 
 mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('comisaria', '01:00:00', 300, 100, 30, 4000, 0, 80, 0, 0)");
 
@@ -180,5 +180,6 @@ mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (14,
 // mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (18, 8, 'Activado')");
 // mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (19, 9, 'Desactivado')");
 // mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (20, 10, 'Desactivado')");
-
+mysqli_query($c, "INSERT INTO datos (clave, valor) VALUES ('dia_final', 19524)");
+mysqli_query($c, "INSERT INTO datos (clave, valor) VALUES ('dia_inicial', 19513)");
 ?>
