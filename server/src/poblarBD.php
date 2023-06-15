@@ -2,16 +2,16 @@
 include "conexion.php";
 //Inserciones en la tabla usuario
 mysqli_query($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
-VALUES ('clara@gmail.com', 'Clara', '1234', 1200, 3000, 0, 70, 1200)");
+VALUES ('clara@gmail.com', 'Clara', '1234', 1200, 3000, 30, 70, 1200)");
 
 mysqli_query($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
-VALUES ('miguel@gmail.com', 'Miguel', '5678', 1500, 2500, 0, 80, 1300)");
+VALUES ('miguel@gmail.com', 'Miguel', '5678', 1500, 2500, 100, 80, 1300)");
 
 mysqli_query($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
-VALUES ('sara@gmail.com', 'Sara', '9012', 1800, 2000, 0, 90, 1400)");
+VALUES ('sara@gmail.com', 'Sara', '9012', 1800, 2000, 10, 90, 1400)");
 
 mysqli_query($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
-VALUES ('juan@gmail.com', 'Juan', '3456', 2000, 1500, 0, 63, 1500)");
+VALUES ('juan@gmail.com', 'Juan', '3456', 2000, 1500, 200, 63, 1500)");
 
 // mysqli_query($c, "INSERT INTO usuario (email, nombre, pass, dinero, comida, energia, felicidad, poblacion) 
 // VALUES ('laura@gmail.com', 'Laura', '7890', 2200, 1800, 1200, 85, 1600)");
@@ -97,13 +97,13 @@ mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, 
 
 mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('granja', '00:15:00', 400, 500, 0, 1000, 0, 0, 120, 0)");
 
-mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('pozo', '01:00:00', 300, 200, 10, 1000, 0, 0, 200, 0)");
+mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('pozo', '00:00:10', 300, 200, 10, 1000, 0, 0, 200, 0)");
 
-mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('molinos de viento', '00:30:00', 200, 100, 200, 1000, 0, 100, 0, 150)");
+mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('molinos de viento', '00:05:00', 200, 100, 200, 1000, 0, 100, 0, 150)");
 
-mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('granero', '00:20:00', 500, 800, 0, 1000, 0, 80, 0, 120)");
+mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('granero', '00:18:00', 500, 800, 0, 1000, 0, 80, 0, 120)");
 
-mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('mina de hierro', '01:30:00', 4000, 0, 300, 1000, 0, 0, 0, 400)");
+mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('mina de hierro', '00:30:00', 4000, 0, 300, 1000, 0, 0, 0, 400)");
 
 mysqli_query($c, "INSERT INTO tipo (nombre, tiempo, coste_dinero, coste_comida, coste_energia, pob_requerida, edif_requeridos, efecto_dinero, efecto_comida, efecto_energia) VALUES ('fabrica', '00:45:00', 2500, 0, 600, 3500, 0, 0, 200, 300)");
 
