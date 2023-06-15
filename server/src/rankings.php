@@ -83,7 +83,7 @@
             $consulta = "SELECT u.*, COUNT(*) AS puestos_comerciales 
             FROM usuario u 
             INNER JOIN ubicacion ub ON u.id_usuario = ub.id_usuario
-            WHERE ub.tipo = 'puesto comercial' 
+            WHERE ub.tipo = 'puesto_comercial' 
             GROUP BY u.id_usuario";
             $resultado = mysqli_query($c, $consulta);
             $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
@@ -97,6 +97,7 @@
                             </div>
                             <tr>
                                 <th>Posición</th>
+                                <th>Usuario</th>
                                 <th>Puestos comerciales</th>
                             </tr>
                         </thead>
@@ -106,6 +107,7 @@
                             ?>
                             <tr>
                                 <td class="align-middle"><?=$i + 1?></td>
+                                <td class="align-middle"><?=$resultado[$i]['nombre']?></td>
                                 <td class="align-middle"><?=$resultado[$i]['puestos_comerciales']?></td>
                             </tr>
                             <?
