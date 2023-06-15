@@ -71,6 +71,9 @@
                                     if($resultado[$i]['coste_energia'] != 0){
                                         ?><i class="fas fa-bolt pl-2 pr-2"></i><?=$resultado[$i]['coste_energia'] ;
                                     }
+                                    if($resultado[$i]['pob_requerida'] != 0){
+                                        ?><i class="fa fa-users pl-2 pr-2"></i><?=$resultado[$i]['pob_requerida'] ;
+                                    }
                                     ?>
                                 </div>
                                 <div class="d-flex justify-content-center">
