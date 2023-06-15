@@ -44,7 +44,7 @@ $rtdoUsuario = mysqli_fetch_all($rtdoUsuario, MYSQLI_ASSOC);
             </a>
             <ul class="dropdown-menu preview-list">
                 <li>
-                    <a class="dropdown-item" href="/borrarUsuario"><i class="fas fa-trash-alt color"></i> Borrar Usuario</a>
+                    <a class="dropdown-item" href="/borrarUsuario"  data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt color"></i> Borrar Usuario</a>
                 </li>
                 <div class="dropdown-divider"></div>
                 <li>
@@ -52,6 +52,25 @@ $rtdoUsuario = mysqli_fetch_all($rtdoUsuario, MYSQLI_ASSOC);
                         sesión</a>
                 </li>
             </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Borrar usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas borrar tu usuario? Toda la información asociada a tu cuenta será borrada permanentemente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a href="/borrarUsuario" class="btn btn-primary">Aceptar</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
