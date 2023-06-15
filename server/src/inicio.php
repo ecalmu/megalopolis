@@ -104,12 +104,18 @@
                     </div>
                     <form method="post" class="text-center">
                         <?
-                        if($resultado[$i]['estado'] == "Activado" && $rtdoUsuario[0]['energia'] - $resultado[$i]['efecto_energia'] > $resultado[$i]['coste_energia'] ){
-                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado">Desactivar</button><?
-                        } else if ($rtdoUsuario[0]['energia'] < $resultado[$i]['coste_energia']){
-                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado" disabled="disabled">Activar</button><?
+                        if ($resultado[$i]['estado'] == "Activado") {
+                            if ($resultado[$i]['efecto_energia'] > $rtdoUsuario[0]['energia']) {
+                                ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado" disabled="disabled">Desactivar</button><?php
+                            } else {
+                                ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Desactivado">Desactivar</button><?php
+                            }
                         } else {
-                            ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado">Activar</button><?
+                            if ($resultado[$i]['coste_energia'] <= $rtdoUsuario[0]['energia']) {
+                                ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado">Activar</button><?php
+                            } else {
+                                ?><button class="btn btn-primary px-3 estado text-center" name="estado" value="Activado" disabled="disabled">Activar</button><?php
+                            }
                         }
                         ?>
                         <input type="hidden" name="id_tipo" value="<?=$resultado[$i]['id_tipo']?>">
