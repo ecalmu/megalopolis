@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+
 $rutas = [
     '/' => 'inicio',
     '/non-initial' => 'non-initial',
