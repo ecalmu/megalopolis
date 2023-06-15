@@ -19,7 +19,7 @@
 		pass VARCHAR(70) NOT NULL,
 		dinero INT(10) DEFAULT 1000,
 		comida INT(10) DEFAULT 1000,
-		energia INT(10) DEFAULT 1000,
+		energia INT(10) DEFAULT 0,
 		felicidad INT(3) DEFAULT 100,
 		poblacion INT(10) DEFAULT 1000,
 		fechaMod INT(11),
