@@ -8,10 +8,10 @@ function calcular_recurso($x,$y) {
     $periodo = obtener_periodo_en_curso();
 
     srand(SEED.'2'. $periodo['dia_inicial']);
-    $cantidad_cambio_inicio = rand(0,6000);
+    $cantidad_cambio_inicio = rand(0,200);
 
     srand(SEED.'2'. $periodo['dia_final']);
-    $cantidad_cambio_final = rand(0,6000);
+    $cantidad_cambio_final = rand(0,200);
     $diferencia = $cantidad_cambio_inicio - $cantidad_cambio_final;
 
     $cambio = (floor($diferencia/($periodo['dia_final'] - $periodo['dia_inicial']))) * ($dia_actual - $periodo['dia_inicial']);
