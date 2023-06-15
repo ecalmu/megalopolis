@@ -1,4 +1,5 @@
 <?
+
 $tipo = $_POST['id_tipo'];
 if (isset($tipo)){
     //obtengo el los datos del tipo de edificio
@@ -16,9 +17,10 @@ if (isset($tipo)){
     $dinero = $rtdoUsuario[0]['dinero'] - $rtdoTipo[0]['coste_dinero'];
  
     //Si se cumplen los requisitos para su construcción
-    if ($energia >= 0 && $comida >= 0 && $dinero >= 0 && $rtdoUsuario[0]['poblacion'] > $rtdoTipo[0]['pob_requerida']) {
+    if ($energia >= 0 && $comida >= 0 && $dinero >= 0 && $rtdoUsuario[0]['poblacion'] >= $rtdoTipo[0]['pob_requerida']) {
         mysqli_query($c, "UPDATE usuario SET energia = '$energia', comida = '$comida', dinero = '$dinero' WHERE id_usuario = $id_usuario");
-        mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado, disponibilidad) VALUES ('$tipo', 1, 'Activado',0)");
+        $ahora = date('Y-m-d H:i:s');
+        mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado, disponibilidad, construccion) VALUES ('$tipo', 1, 'Activado',0, '$ahora')");
     }
 }
 ?>
