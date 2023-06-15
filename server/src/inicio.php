@@ -33,7 +33,15 @@
     ?>
     <!-- Indicadores Start -->
     <div class="container-fluid .gray-dark">
-        <div class="row px-xl-5 pb-3">
+        <div class="container">
+            <div class="text-center">
+                <h1>¡Haz crecer tu ciudad!</h1>
+            </div>
+            <div class="mt-4">
+                <p class="text-center">Gestiona los recursos estratégicamente, construye edificios impresionantes, comercia con otros jugadores, haz nuevos asentamientos comerciales y conviértete en el gobernante supremo de la región. ¿Estás listo para mostrar tus habilidades de gestión en este apasionante juego de estrategia y expansión urbana? El destino de tu ciudad y el legado de tu imperio dependen de ti.</p>
+            </div>
+        </div>
+        <div class="row px-xl-5 pb-3 pt-3">
             <?
             for ($i = 0; $i < 5; $i++) {
                 $array = array('poblacion', 'felicidad', 'comida', 'dinero', 'energia');
