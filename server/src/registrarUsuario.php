@@ -53,8 +53,8 @@
                 $id = $rtdId[0]['id_usuario'];
                 $_SESSION['id_usuario'] = $id;
 
-                mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (1, '$id', 'Activado')");
                 mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (2, '$id', 'Activado')");
+                mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado) VALUES (3, '$id', 'Activado')");
                 
                 header("Location:/mapa");
             } else { //Si se produjo algún error
