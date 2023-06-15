@@ -1,7 +1,7 @@
 <?
 function calcular_recurso($x,$y) {
     srand(SEED.'1'. $x. $y);
-    $cantidad_original = rand(0,1000);
+    $cantidad_original = rand(0,300);
     
     $dia_actual = floor(time()/86400);
     
