@@ -21,6 +21,7 @@ async function generarMapa() {
             nuevaFila = document.createElement("div")
             //añado la clase row a la nueva fila
             nuevaFila.classList.add("row")
+            nuevaFila.style.transformStyle = "preserve-3d"
 
             for (let j = 0; j < mapa[i].length; j++) {
                 //Creo una nueva columna
@@ -41,14 +42,17 @@ async function generarMapa() {
                     case "Dinero":
                         nuevaColumna.style.backgroundColor = "rgba(255, 255, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
+                        nuevaColumna.style.transformStyle = "preserve-3d"
                         break;
                     case "Comida":
                         nuevaColumna.style.backgroundColor = "rgba(255, 100, 51, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
+                        nuevaColumna.style.transformStyle = "preserve-3d"
                         break;
                     case "Energia":
                         nuevaColumna.style.backgroundColor = "rgba(51, 212, 255, 0.2)";
                         nuevaColumna.style.backgroundBlendMode = "overlay"
+                        nuevaColumna.style.transformStyle = "preserve-3d"
                         break;
                 }
                 
