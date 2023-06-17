@@ -20,7 +20,7 @@ if (isset($tipo)){
     if ($energia >= 0 && $comida >= 0 && $dinero >= 0 && $rtdoUsuario[0]['poblacion'] >= $rtdoTipo[0]['pob_requerida']) {
         mysqli_query($c, "UPDATE usuario SET energia = '$energia', comida = '$comida', dinero = '$dinero' WHERE id_usuario = $id_usuario");
         $ahora = date('Y-m-d H:i:s');
-        mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado, disponibilidad, construccion) VALUES ('$tipo', 1, 'Activado',0, '$ahora')");
+        mysqli_query($c, "INSERT INTO edificio (id_tipo, id_usuario, estado, disponibilidad, construccion) VALUES ('$tipo', '$id_usuario', 'Activado',0, '$ahora')");
     }
 }
 ?>

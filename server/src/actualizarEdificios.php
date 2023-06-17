@@ -3,17 +3,12 @@
     $resultado = mysqli_query($c, $consulta);
     $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
-    var_dump($resultado);
     for ($i = 0; $i < count($resultado) ; $i++) {
 
         $inicioConstruccion = strtotime($resultado[$i]['construccion']);
-        echo ' Inicio'.$inicioConstruccion;
         $fechaActual = time();
-        echo ' Actual'.$fechaActual;
         $costeTiempo = strtotime($resultado[$i]['tiempo']) - strtotime('00:00:00');
-        echo ' Coste'.$costeTiempo;
         $finConstruccion = $inicioConstruccion + $costeTiempo;
-        echo ' Fin'.$finConstruccion;
 
         if (time() >= $finConstruccion) {
             $id_edificio = $resultado[$i]['id_edificio'];
