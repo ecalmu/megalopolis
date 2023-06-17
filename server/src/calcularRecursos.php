@@ -64,10 +64,10 @@ function set_value($clave, $valor) {
     include "conexion.php";
     switch ($clave) {
         case 'dia_inicial':
-            mysqli_query($c, "UPDATE datos SET dia_inicial = '$valor'");
+            mysqli_query($c, "UPDATE datos SET valor = '$valor' WHERE clave = '$clave");
             break;
         case 'dia_final':
-            mysqli_query($c, "UPDATE datos SET dia_final = '$valor'");
+            mysqli_query($c, "UPDATE datos SET valor = '$valor' WHERE clave = '$clave");
             break;
     }
 }
