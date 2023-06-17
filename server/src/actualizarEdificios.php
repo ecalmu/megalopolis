@@ -6,9 +6,13 @@
     for ($i = 0; $i < count($resultado) ; $i++) {
 
         $inicioConstruccion = strtotime($resultado[$i]['construccion']);
+        echo $inicioConstruccion;
         $fechaActual = time();
+        echo $fechaActual;
         $costeTiempo = strtotime($resultado[$i]['tiempo']) - strtotime('00:00:00');
+        echo $costeTiempo;
         $finConstruccion = $inicioConstruccion + $costeTiempo;
+        echo $finConstruccion;
 
         if (time() >= $finConstruccion) {
             $id_edificio = $resultado[$i]['id_edificio'];
