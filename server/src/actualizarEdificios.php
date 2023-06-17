@@ -3,6 +3,7 @@
     $resultado = mysqli_query($c, $consulta);
     $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
+    var_dump($resultado);
     for ($i = 0; $i < count($resultado) ; $i++) {
 
         $inicioConstruccion = strtotime($resultado[$i]['construccion']);
