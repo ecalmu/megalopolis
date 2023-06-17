@@ -6267,12 +6267,16 @@ a.close.disabled {
   transform: rotateZ(-5deg);
 }
 .rotacionImg{
-  transform-style: preserve-3d;
-  /* transform: rotateX(400deg);
+    /* transform: rotateX(400deg);
   transform: rotateY(-40deg); */
   /* transform: rotate3d(1, 2, -1, 192deg); */
-  transform: rotateX(-50deg);
-  transform: rotateZ(-2deg);
+  /*transform: rotateX(-50deg);
+  transform: rotateZ(-2deg);*/
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg)translate(0, -42px);
+  position: absolute;
+  z-index: -11000;
+  margin-bottom: -71px;
 }
 
 .tooltip .tooltiptext {
@@ -6285,13 +6289,13 @@ a.close.disabled {
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
+  bottom: -55%;
   left: 50%;
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
-  /* transform-style: preserve-3d;
-  transform: rotateY(-500deg); */
+  transform-style: preserve-3d;
+  transform: rotatex(-30deg) translate(0, -118px);
 }
 
 .tooltip .tooltiptext::after {
@@ -6320,6 +6324,7 @@ a.close.disabled {
 #mapa{
   /* transform: rotate3d(1, 2, -1, 10deg); */
   transform: rotateX(30deg);
+  transform-style: preserve-3d;
 }
 .popover {
   position: absolute;
