@@ -5,10 +5,11 @@
 
     for ($i = 0; $i < count($resultado) ; $i++) {
 
-        $inicioConstruccion = strtotime($resultado[$i]['construccion']);
+        $inicioConstruccion = DateTime::createFromFormat('Y-m-d H:i:s', $resultado[$i]['construccion'])->getTimestamp();
         $fechaActual = time();
-        $costeTiempo = strtotime($resultado[$i]['tiempo']) - strtotime('00:00:00');
+        $costeTiempo = DateTime::createFromFormat('H:i:s', $resultado[$i]['tiempo'])->getTimestamp() - strtotime('00:00:00');
         $finConstruccion = $inicioConstruccion + $costeTiempo;
+
 
         if (time() >= $finConstruccion) {
             $id_edificio = $resultado[$i]['id_edificio'];
