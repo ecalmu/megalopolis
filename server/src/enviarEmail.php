@@ -46,7 +46,7 @@ include('../src/conexion.php');
 //Asignamos asunto y cuerpo del mensaje
 //El cuerpo del mensaje lo ponemos en formato html, haciendo
 //que se vea en negrita
-	$email->Subject = "Restablecer tu contraseña";
+	$email->Subject = "Restablecer acceso";
 
 	$token = uniqid();
 	
@@ -76,6 +76,20 @@ $email->Body = '
 		echo "Problemas enviando correo electrónico";
 		echo "<br/>".$email->ErrorInfo;
    }
-   else
-   echo "Revisa tu email";
+   else {
+	?>
+	<div class="container">
+		<div class="row justify-content-center align-items-center" style="height: 100vh;">
+		<div class="col-4">
+			<div class="text-center">
+			<i class="fa fa-envelope fa-5x"></i>
+			<h1>Revisa tu email</h1>
+			</div>
+		</div>
+		</div>
+	</div>
+	<?
+
+   }
+   
 ?>
