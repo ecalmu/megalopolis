@@ -63,7 +63,7 @@ $email->Body = '
         <p style="color: #555555;">No te preocupes, puedes cambiarla utilizando este código:</p>
         <p style="background-color: #ffffff; color: #333333; padding: 10px; font-size: 18px;"><strong>' . $token . '</strong></p>
         <p style="color: #555555;">Desde nuestra web:</p>
-        <p><a href="http://localhost:8080/cambiarPass" style="background-color: #5fe7db; color: black; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Restablecer contraseña</a></p>
+        <p><a href="https://megalopolis.defcomsoftware.com/cambiarPass" style="background-color: #5fe7db; color: black; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Restablecer contraseña</a></p>
     </div>
 ';
 
