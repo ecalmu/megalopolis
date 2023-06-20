@@ -36,12 +36,12 @@
                                 </div>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Correo" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                             </div>
-                            <label for="email">Contraseña *</label>
+                            <label for="email">Contraseña * <span class="small">(mínimo 8 caracteres)</span></label>
                             <div class="input-group form-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" name="pass" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" name="pass" placeholder="Contraseña" minlength="8" required>
                             </div>
                             
                             <div id="privacidad" class="row align-items-center remember mb-4">
